@@ -23,12 +23,14 @@
 
 #define MAX_ARGS_C 100
 //Regex before escaping (?:(?:")(\\"|[^"]*)(?:"))|([^\s]+)
-//(?:(?:\")(\\\\\"|[^\"]*)(?:\"))|
-#define REGEX_ARGS_RULE "(.+)$"
+//(?:(?:\")(\\\\\"|[^\"]*)(?:\"))
+#define REGEX_ARGS_RULE "([\\S]+)+"
 
 int count_quotes(char* in_str);
 
-bool extract_args(char* line, size_t len, char** args, int* argc, bool* child_wait);
+char** extract_args(char* line, size_t len, int* argc, bool* child_bg);
+
+char** appendArgument(char** args, char* arg, int* argc);
 
 
 //End of header file

@@ -12,20 +12,22 @@
  */
 
 #define _GNU_SOURCE
+#define DEBUGGING_MODE
 #include "extract.h"
 
 #define INVALID_ARGS_MSG "Invalid command: Could not extract arguments\n"
 #define UNABLE_GET_COMMAND_MSG "Unable to read command\n"
 
 
-int main(int argc, char** argv)
+int main()
 {
-char **args;
+char **_args;
 int should_run = 1;
 char* line = NULL;
 size_t len = 0;
-int argc = 0;
-bool child_wait;
+int _argc = 0;
+int i;
+bool child_bg;
 while(should_run)
 {
 	printf("osh>");
@@ -34,22 +36,20 @@ while(should_run)
 		printf(UNABLE_GET_COMMAND_MSG);
 		goto END_OF_ITERATION;
 	}
-	printf("Command Entered: %s\n", line);
+        #ifdef DEBUGGING_MODE
+	printf("Command Entered: %s\n", line);//For debugging purposes
+        #endif
 	//Extract args
-	if(count_quotes(line)%2 != 0)
-		printf("Invalid command: An open quote was not matched by a closed quote\n");
-	bool healthy_args = true;//extract_args(line, len, args, &argc, &child_wait);
-	if(healthy_args)
+	_args = extract_args(line, len, &_argc, &child_bg);
+	
+        if(_args != NULL)
 	{
 		//Execute the command
-		printf("Arguments: %d\n", argc);
-		for(int i = 0; i < argc; i++)
-			{printf("%s", &args[i][0]);}
-	}
-	else
-	{
-		//Print error message to the user
-		printf(INVALID_ARGS_MSG);
+            #ifdef DEBUGGING_MODE
+		printf("Arguments: %d\n", _argc);
+		for(i = 0; i < _argc; i++)
+			{printf("%s\n", _args[i]);}
+            #endif
 	}
 END_OF_ITERATION:
 	//Flush the stdout
@@ -58,17 +58,17 @@ END_OF_ITERATION:
 	free(line);
 	line = NULL;
 	//Empty the args array
-	/*if(healthy_args)
+	if(_args != NULL)
 	{
-		for(int i = 0; i < argc; i++)
-	    		{free(args[i]);
-			args[i] = NULL;
+		for(i = 0; i < _argc; i++)
+	    		{free(_args[i]);
+			_args[i] = NULL;
 			}
-		free(args);
-		args = NULL;
-	}*/	
+		free(_args);
+		_args = NULL;
+	}
 	//Set the args count to zero
-	argc = 0;
+	_argc = 0;
 }
 
 
