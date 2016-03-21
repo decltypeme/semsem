@@ -13,18 +13,9 @@
 
 #ifndef EXTRACT_H
 #define EXTRACT_H
-#include <stdio.h>
-#include <unistd.h>
-#include <stdlib.h>
-#include <regex.h>
-#include <stdbool.h>
-#include <ctype.h>
-#include <string.h>
+#include "include.h"
 
-#define MAX_ARGS_C 100
-//Regex before escaping (?:(?:")(\\"|[^"]*)(?:"))|([^\s]+)
-//(?:(?:\")(\\\\\"|[^\"]*)(?:\"))
-#define REGEX_ARGS_RULE "([\\S]+)+"
+
 
 int count_quotes(char* in_str);
 
