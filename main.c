@@ -106,6 +106,8 @@ AFTER_INPUT:
                             strcat(line, " &\n");
                             printf("%s", line);
                 }
+                if(history_bg)
+                    child_bg = true;
                 execute(_args, _argc, child_bg);
                 flush_all_buffers();
             }

@@ -57,7 +57,7 @@ void execute(char** _args, int _argc, bool _bg) {
             current_child_executing_pid = -1;
 #ifdef ENABLE_PARENT_MESSAGE_ON_FAIULRE
             if (exit_status == CHILD_FAILED)
-                printf("The child process was not created successfully.\n");
+                printf("The child process failed to create.\n");
 #endif
 #ifdef PRINT_CHILD_EXIT_CODE
             printf("Child process exited with %d\n", exit_status);

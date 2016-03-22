@@ -3,8 +3,8 @@
 #include <stdio.h>
 int main()
 {
-	while(sleep(1), 1)
-		printf("Running......\n");
+	while(sleep(1), 1);
+		//printf("Running......\n");
 	exit(0);
 }
 
