@@ -1,14 +1,14 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * semsem is a basic shell for Unix/Linux systems
+ * Written by: Islam Faisal (decltypeme)
+ * The American University in Cairo
+ * For License, please see LICENSE 
  */
 
-/* 
- * File:   include.h
- * Author: pilot
- *
- * Created on March 22, 2016, 1:56 AM
+/*
+ * File: include.h
+ * Author: Islam Faisal
+ * A list of files to be included
  */
 
 #ifndef INCLUDE_H

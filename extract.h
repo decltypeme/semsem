@@ -1,20 +1,19 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * semsem is a basic shell for Unix/Linux systems
+ * Written by: Islam Faisal (decltypeme)
+ * The American University in Cairo
+ * For License, please see LICENSE 
  */
 
-/* 
- * File:   extract.h
- * Author: pilot
- *
- * Created on March 21, 2016, 10:55 PM
+/*
+ * File: extract.h
+ * Author: Islam Faisal
+ * Arguments extraction and command parsing
  */
 
 #ifndef EXTRACT_H
 #define EXTRACT_H
 #include "include.h"
-
 
 
 int count_quotes(char* in_str);

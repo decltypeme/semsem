@@ -11,4 +11,7 @@ gnome-terminal
 3. Same for the history command
 4. ! 2asv would work as ! 2
 5. Assumption: history is NOT recorded in history, if you want build with HISTORY_IN_HISTORY
-6. Calling ! 1 will place in history the corresponding 
+6. Calling ! 1 will place in history the corresponding
+7. Unsucessful calls for history are not placed in history
+8. Anything starting with "!" is a history command
+9. SIGINT are handled to terminate the current process in the foreground

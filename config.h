@@ -1,14 +1,14 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * semsem is a basic shell for Unix/Linux systems
+ * Written by: Islam Faisal (decltypeme)
+ * The American University in Cairo
+ * For License, please see LICENSE 
  */
 
-/* 
- * File:   config.h
- * Author: pilot
- *
- * Created on March 22, 2016, 4:52 AM
+/*
+ * File: config.h
+ * Author: Islam Faisal
+ * Configurations to be set before building
  */
 
 #ifndef CONFIG_H

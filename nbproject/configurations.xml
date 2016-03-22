@@ -9,6 +9,7 @@
       <itemPath>extract.h</itemPath>
       <itemPath>history.h</itemPath>
       <itemPath>include.h</itemPath>
+      <itemPath>process.h</itemPath>
       <itemPath>semsem.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
@@ -21,6 +22,7 @@
       <itemPath>extract.c</itemPath>
       <itemPath>history.c</itemPath>
       <itemPath>main.c</itemPath>
+      <itemPath>process.c</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
                    displayName="Test Files"
@@ -60,6 +62,10 @@
       </item>
       <item path="main.c" ex="false" tool="0" flavor2="0">
       </item>
+      <item path="process.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="process.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="semsem.h" ex="false" tool="3" flavor2="0">
       </item>
     </conf>
@@ -98,6 +104,10 @@
       <item path="include.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="process.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="process.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="semsem.h" ex="false" tool="3" flavor2="0">
       </item>

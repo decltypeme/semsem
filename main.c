@@ -1,14 +1,14 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * semsem is a basic shell for Unix/Linux systems
+ * Written by: Islam Faisal (decltypeme)
+ * The American University in Cairo
+ * For License, please see LICENSE 
  */
 
-/* 
- * File:   main.c
- * Author: pilot
- *
- * Created on March 21, 2016, 10:47 PM
+/*
+ * File: main.c
+ * Author: Islam Faisal
+ * Contains the main routine of the program 
  */
 
 
@@ -64,7 +64,7 @@ AFTER_INPUT:
                 char* command;
                 if (_argc > 1) {
                     int hist_index;
-                    if (strcmp(_args[1], "!") == 0)
+                    if (_args[1][0] = '!')
                         hist_index = get_history_index(false);
                     else {
                         hist_index = atoi(_args[1]);
@@ -81,8 +81,10 @@ AFTER_INPUT:
                     } else {
                         free(line);
                         //Deep copy because of the routine freeing at the end
-                        line = (char*) calloc(strlen(command), sizeof (char));
+                        line = (char*) calloc(strlen(command) + 5, sizeof (char));  //And more room for str_cat
                         strcpy(line, command);
+                        line[strlen(command) - 1] = '\0';
+                        strcat(line, " &\n");
                         printf("%s", line);
                         goto AFTER_INPUT;
                     }
@@ -122,6 +124,7 @@ AFTER_SAVING_HISTORY:
         }
         //Set the args count to zero
         _argc = 0;
+        child_bg = false;
     }
 
 
