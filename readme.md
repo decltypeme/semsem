@@ -59,3 +59,4 @@ make
 7. Unsucessful calls for history are not placed in history
 8. Anything starting with "!" is a history command
 9. SIGINT are handled to terminate the current process in the foreground
+10. Calling "!5 &"" will make the most recent command same as 5. However, at this point of call to the command, it will execute in the background.

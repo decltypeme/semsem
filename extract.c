@@ -73,8 +73,18 @@ char** extract_args(char* _line, size_t len, int* argc, bool* child_bg) {
     //if(count_quotes(line)%2 != 0)
     //	printf("Invalid command: An open quote was not matched by a closed quote\n");
     char* line;              //Deep copy override strtok will destroy line, so we do this
-    line = (char*) calloc(strlen(_line), sizeof(char));
-    strcpy(line, _line);
+    int length_line = strlen(_line);
+    line = (char*) calloc(length_line + 1, sizeof(char));
+    //We are not using strcpy because we are interested in adding a space after the first "!"
+    int i, j;
+    bool spaces_so_far = true;
+    for(i = j = 0; i<= length_line;i++)
+    {
+        line[j++] = _line[i];
+        if(_line[i] == '!' && spaces_so_far)
+            line[j++] = ' ';
+        spaces_so_far = isspace(_line[i]);
+    }
     char** args = NULL;
     char* single_arg;
     (*argc) = 0;

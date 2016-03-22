@@ -77,14 +77,17 @@ AFTER_INPUT:
                     command = get_history(shell_hist, hist_index);
                     if (command == NULL) {
                         printf("No such command in history\n");
-                        #include "FAILED_History.h"
+#include "FAILED_History.h"
                     } else {
                         free(line);
                         //Deep copy because of the routine freeing at the end
-                        line = (char*) calloc(strlen(command) + 5, sizeof (char));  //And more room for str_cat
+                        line = (char*) calloc(strlen(command) + 5, sizeof (char)); //And more room for str_cat
                         strcpy(line, command);
-                        line[strlen(command) - 1] = '\0';
-                        strcat(line, " &\n");
+                        //Fix this conactenating only one &; most probably would use two child_bg values
+                        /*if (child_bg) {
+                            line[strlen(command) - 1] = '\0';
+                            strcat(line, " &\n");
+                        }*/
                         printf("%s", line);
                         goto AFTER_INPUT;
                     }
