@@ -1,5 +1,6 @@
 # semsem
 semsem is a basic shell for Unix/Linux systems
+
 # Repository Structure
 ```
 semsem
@@ -32,6 +33,10 @@ semsem
 
 # Configuration
 You may want to change configuration before building. All main configurations can be found in "config.h"
+Preprocessor | Effect
+------------ | -------------
+DISPLAY_HISTORY_AS_IS | DEPRECATED: Enabling will cause weird problems. Disabling it makes semsem behave like bash.
+FAILED_HISTORY_IN_HISTORY | DEPRECATED: Enabling will cause weird problems. Disabling it makes semsem behave like bash.
 
 # How to install on Linux
 1. Download the code by downloading the zip file from this page or if you want to download the whole repository, you may do
@@ -50,16 +55,16 @@ make
 ```
 
 # Syntactic Rules
-1. Adding parameters more than MAX_ARGS_C causes undefined behaviour.
-2. Spaces are forced after "!" otherwise the compiler would treat them as one argument
-3. Same for the history command
-4. ! 2asv would work as ! 2
-5. Assumption: history is NOT recorded in history, if you want build with HISTORY_IN_HISTORY
-6. Calling ! 1 will place in history the corresponding
-7. Unsucessful calls for history are not placed in history
-8. Anything starting with "!" is a history command
-9. SIGINT are handled to terminate the current process in the foreground
-10. Calling "!5 &"" will make the most recent command same as 5. However, at this point of call to the command, it will execute in the background.
+1. Anything starting with "!" is a history command
+2. !N and ! N are treated the same.
+3. ""! 2foo" would work as ""! 2"
+4. The history command by default is not stored in history, if you want build with HISTORY_IN_HISTORY
+5. Calling ! N will place in history the corresponding command and not the "! N" command. Example 123 ls is in the history. Doing ! 123 will store ls in the history.
+6. Unlike bash, we do ignore anything after "! N" except for "&". Multiple occurrences of "&" are treated the same. Issue \#5 is meant to make semsem like bash in this feature.
+7. Unsuccessful calls for history are not placed in history
+8. Calling "!5 &"" will make the most recent command same as 5. However, at this point of call to the command, it will execute in the background.
 
 # Process Creation Rule
-1. A process that is not set to work in the background and returns the CHILD_FAILED status defined in config.h, will be treated as a failed process and this will result in an error message printed on the screen. Child execution is not affected however.
+1. When a process is created in the background, its input/output and error streams are not redircted. That is how bash would do it and how we would do it. Input/Output redirection will be included in a future version.
+2. Passing the Ctrl + C will kill the child process in the foreground if any
+3. Passing Ctrl + D will cause the shell to exit
