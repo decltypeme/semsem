@@ -18,10 +18,10 @@
 
 
 
-
-int get_history_index(void);
+int get_history_index(bool increment);
 int set_history(char* hist[HISTORY_SIZE], int index, char* new_member);
 char* get_history(char* hist[HISTORY_SIZE], int index);
+void print_all_history(char* hist[HISTORY_SIZE]);
 
 #endif /* HISTORY_H */
 

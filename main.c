@@ -14,12 +14,10 @@
 
 #include "semsem.h"
 
-char* shell_hist[HISTORY_SIZE];
-
-#define UNABLE_GET_COMMAND_MSG "Unable to read command\n"
-
 int main(int main_argc, char** main_argv) {
     //Some declarations
+    char* shell_hist[HISTORY_SIZE];
+    memset(shell_hist, 0 ,sizeof(shell_hist));
     char* line = NULL;
     char **_args = NULL;
     bool should_run = true, child_bg = false;
@@ -32,6 +30,11 @@ int main(int main_argc, char** main_argv) {
             fprintf(stderr, UNABLE_GET_COMMAND_MSG);
             goto END_OF_ITERATION;
         }
+        
+        //Command entered
+        
+        //Add to history
+        set_history(shell_hist, get_history_index(true), line);
 #ifdef DEBUGGING_MODE
         printf("Command Entered: %s\n", line); //For debugging purposes
 #endif
@@ -56,6 +59,10 @@ int main(int main_argc, char** main_argv) {
                 if(_argc > 1)
                 {
                     
+                }
+                else
+                {
+                    fprintf(stderr, "You monster, you need to tell us which command to retrieve from the history: Syntax ! ! or ! N\n");
                 }
             }
 

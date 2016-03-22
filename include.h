@@ -21,6 +21,7 @@
 #include <stdbool.h>
 #include <ctype.h>
 #include <string.h>
+
 #define INVALID_ARGS_MSG "Invalid command: Could not extract arguments\n"
 
 #define MAX_ARGS_C 100
@@ -33,6 +34,9 @@
 #define DEBUGGING_MODE
 
 #define HISTORY_SIZE 10
+
+#define UNABLE_GET_COMMAND_MSG "Unable to read command\n"
+
 
 #endif /* INCLUDE_H */
 
