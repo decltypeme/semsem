@@ -17,7 +17,6 @@
 int main(int main_argc, char** main_argv) {
     //Replace interrupt handler
     signal(SIGINT, SIG_INT_HANDLER);
-    signal(SIGTSTP, SIG_TSTP_HANDLER);
     //Some declarations
     char* shell_hist[HISTORY_SIZE];
     memset(shell_hist, 0, sizeof (shell_hist));

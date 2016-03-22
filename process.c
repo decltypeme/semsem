@@ -21,13 +21,6 @@ void SIG_INT_HANDLER(int sig) {
     return;
 }
 
-void SIG_TSTP_HANDLER(int sig) {
-    if (current_child_executing_pid != -1) {
-        kill(current_child_executing_pid, SIGSTOP);
-    }
-    return;
-}
-
 void flush_all_buffers(void) {
     fflush(stdout);
     fflush(stderr);
