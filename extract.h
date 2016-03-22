@@ -22,6 +22,5 @@ char** extract_args(char* line, size_t len, int* argc, bool* child_bg);
 
 char** appendArgument(char** args, char* arg, int* argc);
 
-
 //End of header file
 #endif

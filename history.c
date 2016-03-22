@@ -13,6 +13,19 @@
 
 #include "history.h"
 
+//Must be zero indexed
+bool check_in_history(int index)
+{
+    //Old checking, buggy:: get_history_index(false)/HISTORY_SIZE == index / HISTORY_SIZE;
+    //New method: we get the start and end, zero indexed and we check if in range.
+    int start = 0;
+    int end = get_history_index(false);
+    if(end == -1)
+        return false;                       //No commands are there aslan :D
+    if(end >= HISTORY_SIZE)
+        start = end - HISTORY_SIZE + 1;
+    return (index >= start && index <= end);
+}
 
 int get_history_index(bool increment)
 {
@@ -38,7 +51,7 @@ char* get_history(char* hist[HISTORY_SIZE], int index)
 {
     if(get_history_index(false) == -1)
         return NULL;                        //No history so far
-    if(get_history_index(false)/HISTORY_SIZE == index / HISTORY_SIZE)
+    if(check_in_history(index))
         return hist[index % HISTORY_SIZE];
     else
         return NULL;

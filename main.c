@@ -20,7 +20,7 @@ int main(int main_argc, char** main_argv) {
     memset(shell_hist, 0, sizeof (shell_hist));
     char* line = NULL;
     char **_args = NULL;
-    bool should_run = true, child_bg = false;
+    bool should_run = true, child_bg = false, history_bg = false;
     size_t len = 0;
     int _argc = 0, i;
 
@@ -64,9 +64,13 @@ AFTER_INPUT:
                 char* command;
                 if (_argc > 1) {
                     int hist_index;
-                    if (_args[1][0] = '!')
-                        hist_index = get_history_index(false);
-                    else {
+                    if (_args[1][0] == '!') {
+                        if((hist_index = get_history_index(false)) == -1)
+                        {
+                            printf("No commands in history\n");
+                            #include "FAILED_History.h"
+                        }
+                    } else {
                         hist_index = atoi(_args[1]);
                         if (hist_index == 0) {
                             printf("No such command in history, Bonus: Enter a valid integer after !\n");
@@ -83,12 +87,7 @@ AFTER_INPUT:
                         //Deep copy because of the routine freeing at the end
                         line = (char*) calloc(strlen(command) + 5, sizeof (char)); //And more room for str_cat
                         strcpy(line, command);
-                        //Fix this conactenating only one &; most probably would use two child_bg values
-                        /*if (child_bg) {
-                            line[strlen(command) - 1] = '\0';
-                            strcat(line, " &\n");
-                        }*/
-                        printf("%s", line);
+                        history_bg = child_bg;
                         goto AFTER_INPUT;
                     }
 
@@ -99,6 +98,12 @@ AFTER_INPUT:
                 }
             } else {
                 //Execute
+                if(history_bg && !child_bg)
+                {
+                            line[strlen(line) - 1] = '\0';
+                            strcat(line, " &\n");
+                            printf("%s", line);
+                }
                 execute(_args, _argc, child_bg);
                 flush_all_buffers();
             }
@@ -130,6 +135,7 @@ AFTER_SAVING_HISTORY:
         //Set the args count to zero
         _argc = 0;
         child_bg = false;
+        history_bg = false;
     }
 
 

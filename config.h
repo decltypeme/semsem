@@ -17,7 +17,17 @@
 
 #define HISTORY_SIZE 10
 #define SHELL_COOL_NAME "semsem"
+
+
+/*
+ * CAUTION! CAUTION! CAUTION!
+//Warning: Do not enable these two flags
+//The use of them is depreceated
+//#define DISPLAY_HISTORY_AS_IS
 //#define FAILED_HISTORY_IN_HISTORY
+ */
+ 
+
 //#define HISTORY_IN_HISTORY
 //#define DEBUGGING_MODE
 #define INVALID_ARGS_MSG "Invalid command: Could not extract arguments\n"

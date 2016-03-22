@@ -17,7 +17,8 @@
 #define HISTORY_H
 
 
-
+//Must be zero indexed!!!!
+bool check_in_history(int index);
 int get_history_index(bool increment);
 int set_history(char* hist[HISTORY_SIZE], int index, char* new_member);
 char* get_history(char* hist[HISTORY_SIZE], int index);
