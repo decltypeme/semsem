@@ -37,6 +37,6 @@
 //#define PRINT_CHILD_EXIT_CODE
 //Child Process Exit Statuses
 #define CHILD_FAILED -42
-
+#define ENABLE_PARENT_MESSAGE_ON_FAIULRE
 #endif /* CONFIG_H */
 
