@@ -17,6 +17,7 @@
 #include "include.h"
 #include "history.h"
 #include "extract.h"
+#include "process.h"
 
 #endif /* SEMSEM_H */
 

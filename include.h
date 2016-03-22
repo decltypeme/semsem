@@ -21,20 +21,16 @@
 #include <stdbool.h>
 #include <ctype.h>
 #include <string.h>
+#include <sys/types.h>
+#include <sys/types.h>
+#include <sys/wait.h>
 #include "config.h"
-#define INVALID_ARGS_MSG "Invalid command: Could not extract arguments\n"
-
-#define MAX_ARGS_C 100
+#define _GNU_SOURCE
 //Regex before escaping (?:(?:")(\\"|[^"]*)(?:"))|([^\s]+)
 //(?:(?:\")(\\\\\"|[^\"]*)(?:\"))
 #define REGEX_ARGS_RULE "([\\S]+)+"
 
 
-#define _GNU_SOURCE
-
-
-
-#define UNABLE_GET_COMMAND_MSG "Unable to read command\n"
 
 #endif /* INCLUDE_H */
 

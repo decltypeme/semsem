@@ -95,10 +95,12 @@ AFTER_INPUT:
                 } else {
                     fprintf(stderr, "You monster, you need to tell us which command to retrieve from the history: Syntax ! ! or ! N\n");
 #include "FAILED_History.h"
+#include "process.h"
                 }
             } else {
                 //Execute
-                printf("executing..\n");
+                execute(_args, _argc, child_bg);
+                flush_all_buffers();
             }
 
 

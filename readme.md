@@ -60,3 +60,6 @@ make
 8. Anything starting with "!" is a history command
 9. SIGINT are handled to terminate the current process in the foreground
 10. Calling "!5 &"" will make the most recent command same as 5. However, at this point of call to the command, it will execute in the background.
+
+# Process Creation Rule
+1. A process that is not set to work in the background and returns the CHILD_FAILED status defined in config.h, will be treated as a failed process and this will result in an error message printed on the screen. Child execution is not affected however.
