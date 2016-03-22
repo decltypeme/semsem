@@ -33,6 +33,7 @@ semsem
 
 # Configuration
 You may want to change configuration before building. All main configurations can be found in "config.h"
+
 Preprocessor | Effect
 ------------ | -------------
 DISPLAY_HISTORY_AS_IS | DEPRECATED: Enabling will cause weird problems. Disabling it makes semsem behave like bash.

@@ -15,6 +15,7 @@
 #define INCLUDE_H
 
 #include <stdio.h>
+#include <errno.h>
 #include <unistd.h>
 #include <stdlib.h>
 #include <regex.h>
