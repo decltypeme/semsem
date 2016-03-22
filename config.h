@@ -32,7 +32,7 @@
 //#define DEBUGGING_MODE
 #define INVALID_ARGS_MSG "Invalid command: Could not extract arguments\n"
 #define UNABLE_GET_COMMAND_MSG "Unable to read command\n"
-#define CHILD_FAILED_MSG "Command not found\n"
+#define COMMAND_NOT_FOUND__MSG "Command not found\n"
 //#define MAX_ARGS_C 100            //Depreceated
 //#define PRINT_CHILD_EXIT_CODE
 //Child Process Exit Statuses

@@ -28,17 +28,26 @@ semsem
 
 # Features
 1. History of previous commands
-2. Allowing processes to work in the background.
-3. Sending SIGINT to kill the process working in the foreground.
+2. Allowing processes to work concurrently with the shell.
+3. Sending SIGINT to kill the process working in the foreground. [Under development see issue \#]
 
 # Configuration
-You may want to change configuration before building. All main configurations can be found in "config.h"
+You may want to change configuration before building. All main configurations can be found in "config.h" Plase make sure to use either
+
+***WARNING:*** **Deprecated arguments either do not have effect at all or changing them will cause problems or undefined behaviors. These are only left for debugging purposes**
 
 Preprocessor | Effect
 ------------ | -------------
-DISPLAY_HISTORY_AS_IS | DEPRECATED: Enabling will cause weird problems. Disabling it makes semsem behave like bash.
-FAILED_HISTORY_IN_HISTORY | DEPRECATED: Enabling will cause weird problems. Disabling it makes semsem behave like bash.
-
+HISTORY_SIZE | The size of commands to be stored in the history.
+SHELL_COOL_NAME | Our shell's cool name. Default is "semsem". Please if you change it, the octocat will not be happy.
+INVALID_ARGS_MSG | A message to display when unable to extract arguments. Defaults to "Invalid command: Could not extract arguments\n"
+UNABLE_GET_COMMAND_MSG | Message to display if unable to read command from stdin. Default: "Unable to read command\n"
+COMMAND_NOT_FOUND__MSG | A message to display if the command was not found i.e. if (errno == ENOENT). Default: "Command not found\n". **If the process creation failed for other reasons. errno is resolved and the appropriate message is displayed to the user**
+PRINT_CHILD_EXIT_CODE | Disabled by default. Upon child process termination, the exit code is printed with a message.
+DEBUGGING_MODE | Prints helpful messages specially on parsing. Disabled by default.
+DISPLAY_HISTORY_AS_IS |**DEPRECATED**: Enabling will cause weird problems. Disabling it makes semsem behave like bash.
+FAILED_HISTORY_IN_HISTORY |**DEPRECATED**: Enabling will cause weird problems. Disabling it makes semsem behave like bash.
+MAX_ARGS_C | **DEPRECATED**: The maximum number of arguments. Currently, we use realloc.
 # How to install on Linux
 1. Download the code by downloading the zip file from this page or if you want to download the whole repository, you may do
 ```
@@ -69,3 +78,4 @@ make
 1. When a process is created in the background, its input/output and error streams are not redircted. That is how bash would do it and how we would do it. Input/Output redirection will be included in a future version.
 2. Passing the Ctrl + C will kill the child process in the foreground if any
 3. Passing Ctrl + D will cause the shell to exit
+4. When creating a process, we distinguish between a file not found error and an error caused returned by execvp. Proper messages are printed to the user.

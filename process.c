@@ -30,7 +30,7 @@ void execute(char** _args, int _argc, bool _bg) {
         //If the process is set to work in the background, we need to strip him from the pipes.
         if (execvp(_args[0], _args) == -1) {
             if (errno == ENOENT)
-                printf("%s", CHILD_FAILED_MSG);
+                printf("%s", COMMAND_NOT_FOUND__MSG);
             else {
                 printf("%s\n", strerror(errno));
             }
