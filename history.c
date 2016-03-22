@@ -31,8 +31,10 @@ char* get_history(char* hist[HISTORY_SIZE], int index)
 {
     if(get_history_index(false) == -1)
         return NULL;                        //No history so far
-    if(get_history_index(false) == index / HISTORY_SIZE)
-    return hist[index % HISTORY_SIZE];
+    if(get_history_index(false)/HISTORY_SIZE == index / HISTORY_SIZE)
+        return hist[index % HISTORY_SIZE];
+    else
+        return NULL;
 }
 
 void print_all_history(char* hist[HISTORY_SIZE])
@@ -48,7 +50,7 @@ void print_all_history(char* hist[HISTORY_SIZE])
         char* command = hist[start % HISTORY_SIZE];
         if(command == NULL)
             fprintf(stderr, "Internal error occurred while retrieving from history\n");
-        printf("%d\t%s\n", start, command);
+        printf("%d\t%s", start + 1, command);
         start++;
     }
     return;

@@ -21,7 +21,7 @@
 #include <stdbool.h>
 #include <ctype.h>
 #include <string.h>
-
+#include "config.h"
 #define INVALID_ARGS_MSG "Invalid command: Could not extract arguments\n"
 
 #define MAX_ARGS_C 100
@@ -29,14 +29,12 @@
 //(?:(?:\")(\\\\\"|[^\"]*)(?:\"))
 #define REGEX_ARGS_RULE "([\\S]+)+"
 
-#define SHELL_COOL_NAME "semsem"
-#define _GNU_SOURCE
-#define DEBUGGING_MODE
 
-#define HISTORY_SIZE 10
+#define _GNU_SOURCE
+
+
 
 #define UNABLE_GET_COMMAND_MSG "Unable to read command\n"
-
 
 #endif /* INCLUDE_H */
 

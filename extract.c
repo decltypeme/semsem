@@ -62,9 +62,12 @@ int count_quotes(char* in_str) {
  * @return 
  * Assumes & must be at the end of 
  */
-char** extract_args(char* line, size_t len, int* argc, bool* child_bg) {
+char** extract_args(char* _line, size_t len, int* argc, bool* child_bg) {
     //if(count_quotes(line)%2 != 0)
     //	printf("Invalid command: An open quote was not matched by a closed quote\n");
+    char* line;              //Deep copy override strtok will destroy line, so we do this
+    line = (char*) calloc(strlen(_line), sizeof(char));
+    strcpy(line, _line);
     char** args = NULL;
     char* single_arg;
     (*argc) = 0;
@@ -83,12 +86,14 @@ char** extract_args(char* line, size_t len, int* argc, bool* child_bg) {
     //Now, we start extracting parameters; Some code is adapted from the code sent in the lecture.
     if ((single_arg = strtok(line, " \t\n")) == NULL) {
         /* Check for empty line */
+        free(line);
         return args; /* NULL */
     }
     args = appendArgument(args, single_arg, argc);
     while ((single_arg = strtok(NULL, " \t\n")) != NULL) {
         args = appendArgument(args, single_arg, argc);
     }
+    free(line);
     return args;
 
 }

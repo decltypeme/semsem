@@ -4,6 +4,8 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
+      <itemPath>FAILED_History.h</itemPath>
+      <itemPath>config.h</itemPath>
       <itemPath>extract.h</itemPath>
       <itemPath>history.h</itemPath>
       <itemPath>include.h</itemPath>
@@ -42,6 +44,10 @@
       </toolsSet>
       <compileType>
       </compileType>
+      <item path="FAILED_History.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="config.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="extract.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="extract.h" ex="false" tool="3" flavor2="0">
@@ -77,6 +83,10 @@
           <developmentMode>5</developmentMode>
         </asmTool>
       </compileType>
+      <item path="FAILED_History.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="config.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="extract.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="extract.h" ex="false" tool="3" flavor2="0">
