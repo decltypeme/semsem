@@ -17,7 +17,7 @@
 int main(int main_argc, char** main_argv) {
     //Some declarations
     char* shell_hist[HISTORY_SIZE];
-    memset(shell_hist, 0 ,sizeof(shell_hist));
+    memset(shell_hist, 0 , sizeof(shell_hist));
     char* line = NULL;
     char **_args = NULL;
     bool should_run = true, child_bg = false;
@@ -32,12 +32,10 @@ int main(int main_argc, char** main_argv) {
         }
         
         //Command entered
-        
-        //Add to history
-        set_history(shell_hist, get_history_index(true), line);
 #ifdef DEBUGGING_MODE
         printf("Command Entered: %s\n", line); //For debugging purposes
 #endif
+AFTER_INPUT:
         //Extract args
         _args = extract_args(line, len, &_argc, &child_bg);
         if (_args != NULL) {
@@ -49,15 +47,44 @@ int main(int main_argc, char** main_argv) {
 #endif
             //Execute the command
             //Exit command; Any additional arguments are ignored
-            if (strcmp(_args[0], "exit")) {
+            if (strcmp(_args[0], "exit") == 0) {
                 should_run = false;
                 goto END_OF_ITERATION;
             }
-            //Now, we check if it is a history command
-            if(_args[0] == "!")
+            else if(strcmp(_args[0], "history") == 0)
             {
+                print_all_history(shell_hist);
+                goto END_OF_ITERATION;
+            }
+            //Now, we check if it is a history command
+            else if(_args[0] == "!")
+            {
+                char* command;
                 if(_argc > 1)
                 {
+                    int hist_index;
+                    if(strcmp(_args[1], "!") == 0)
+                        hist_index = get_history_index(false);
+                    else
+                    {
+                        hist_index = atoi(_args[1]);
+                        if(hist_index == 0)
+                            printf("No such command in history, Bonus: Enter a valid integer after !\n");
+                    }
+                    command = get_history(shell_hist, hist_index);
+                    if(command == NULL)
+                    {
+                        printf("No such command in history\n");
+                    }
+                    else
+                    {
+                        free(line);
+                        //Deep copy because of the routine freeing at the end
+                        line = (char*) calloc(strlen(command), sizeof(char));
+                        strcpy(line, command);
+                        printf("%s\n", line);
+                        goto AFTER_INPUT;
+                    }
                     
                 }
                 else
@@ -72,6 +99,9 @@ END_OF_ITERATION:
         //Flush the stdout
         fflush(stdout);
         //Free and nullify the string for storing the command
+        //Add to history
+        set_history(shell_hist, get_history_index(true) % HISTORY_SIZE, line);
+        //Free some memory, communists would like it :D
         free(line);
         line = NULL;
         //Empty the args array
